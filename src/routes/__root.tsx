@@ -81,13 +81,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content: "width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1",
       },
       { name: "theme-color", content: "#0f1a1f" },
-      { title: "Lumen — Multi-currency account" },
+      { title: "GREY" },
       {
         name: "description",
         content:
           "Hold, send, and convert USD, EUR, GBP, NGN and IDR in one borderless multi-currency account.",
       },
-      { property: "og:title", content: "Lumen — Multi-currency account" },
+      { property: "og:title", content: "GREY" },
       {
         property: "og:description",
         content: "Borderless multi-currency account for USD, EUR, GBP, NGN, IDR.",
@@ -98,6 +98,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
       { name: "apple-mobile-web-app-title", content: "Lumen" },
+      { name: "twitter:title", content: "GREY" },
+      { name: "description", content: "Grey Reboot rebuilds the grey.co website as a production-ready Android application." },
+      { property: "og:description", content: "Grey Reboot rebuilds the grey.co website as a production-ready Android application." },
+      { name: "twitter:description", content: "Grey Reboot rebuilds the grey.co website as a production-ready Android application." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/6ddefcf4-ff26-435d-9cbb-3b09e3f7160d/id-preview-94c3d52f--01b1638b-7640-4710-8743-176d90b4f6fa.lovable.app-1782471884656.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/6ddefcf4-ff26-435d-9cbb-3b09e3f7160d/id-preview-94c3d52f--01b1638b-7640-4710-8743-176d90b4f6fa.lovable.app-1782471884656.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
