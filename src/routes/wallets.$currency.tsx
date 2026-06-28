@@ -28,7 +28,7 @@ function WalletDetail() {
           <button className="flex-1 border border-zinc-300 py-4 rounded-full font-medium">Convert</button>
         </div>
 
-        {/* Receive USD */}
+{/* Receive USD */}
         <div className="mx-5 mt-10">
           <p className="font-semibold">Receive USD</p>
           <p className="text-sm text-zinc-500">Easily accept payments via bank transfer</p>
@@ -37,7 +37,7 @@ function WalletDetail() {
           </button>
         </div>
 
-        {/* Account Details */}
+        {/* <<< TEMPATKAN KODE INI DI SINI >>> */}
         <div className="mx-5 mt-8 bg-white rounded-3xl p-6 space-y-6">
           <div>
             <p className="text-sm text-zinc-500">Account holder</p>
@@ -48,20 +48,20 @@ function WalletDetail() {
             <p className="font-mono text-lg">216774698486</p>
           </div>
           <div>
-            <p className="text-sm text-zinc-500">Wire routing</p>
-            <p className="font-mono">101019644</p>
+            <p className="text-sm text-zinc-500">Bank name</p>
+            <p className="font-medium">Lead</p>
           </div>
           <div>
             <p className="text-sm text-zinc-500">ACH Routing</p>
             <p className="font-mono">101019644</p>
           </div>
           <div>
-            <p className="text-sm text-zinc-500">Account type</p>
-            <p className="font-medium">Checking</p>
+            <p className="text-sm text-zinc-500">Wire Routing</p>
+            <p className="font-mono">101019644</p>
           </div>
           <div>
-            <p className="text-sm text-zinc-500">Bank name</p>
-            <p className="font-medium">Lead</p>
+            <p className="text-sm text-zinc-500">Account type</p>
+            <p className="font-medium">Checking</p>
           </div>
           <div>
             <p className="text-sm text-zinc-500">Bank address</p>
