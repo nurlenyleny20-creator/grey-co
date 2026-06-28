@@ -94,4 +94,3 @@ function Home() {
     Complete setup
   </button>
 </div>
-}
