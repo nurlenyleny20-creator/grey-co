@@ -25,7 +25,7 @@ function Home() {
             <div className="w-10 h-10 rounded-full bg-zinc-800 text-white flex items-center justify-center font-bold">MS</div>
             <div>
               <p className="text-xs text-zinc-500">Welcome back</p>
-              <p className="font-semibold">Muhammad</p>
+              <p className="font-semibold">Michal Adrian</p>
             </div>
           </div>
           <button className="bg-gradient-to-r from-blue-600 to-purple-600 px-5 py-2 rounded-full text-white text-sm font-medium flex items-center gap-2">
@@ -158,7 +158,7 @@ function Home() {
               <div className="mt-12 space-y-6">
                 <div>
                   <p className="text-sm text-zinc-500">Account holder</p>
-                  <p className="font-medium">MUHAMMAD RUDI SIAGIAN</p>
+                  <p className="font-medium">MICHAL ADRIAN BORON</p>
                 </div>
                 <div>
                   <p className="text-sm text-zinc-500">Account number</p>
