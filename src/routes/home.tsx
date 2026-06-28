@@ -65,7 +65,11 @@ function Home() {
         {/* Horizontal Currency Cards */}
         <div className="mt-10 px-5 overflow-x-auto flex gap-4 pb-6 snap-x snap-mandatory">
           {wallets.map((w: any) => (
-            <div key={w.currency} className="snap-start w-72 bg-white rounded-3xl p-5 shadow border border-zinc-100 shrink-0">
+            <div 
+  key={w.currency} 
+  className="snap-start w-72 bg-white rounded-3xl p-5 shadow border border-zinc-100 shrink-0 cursor-pointer"
+  onClick={() => navigate({ to: `/wallets/${w.currency}` })}
+>
               <div className="text-5xl mb-4">{w.flag}</div>
               <p className="font-semibold text-lg">{w.name}</p>
               <p className="text-sm text-zinc-500">{w.currency}</p>
