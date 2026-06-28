@@ -76,17 +76,22 @@ function Home() {
         </div>
 
         {/* Continue Setup */}
-        <div className="mx-5 mt-4 bg-blue-50 rounded-3xl p-6">
-          <div className="flex justify-between items-start">
-            <div>
-              <p className="font-semibold">Continue setup</p>
-              <p className="text-sm text-zinc-600 mt-1">Use this guide to finish setting up your account</p>
-            </div>
-            <div className="text-blue-600 text-5xl font-semibold">4/5</div>
-          </div>
-          <button className="mt-6 w-full bg-blue-600 text-white py-4 rounded-2xl font-semibold">Complete setup</button>
-        </div>
-      </div>
-    </AppShell>
-  );
+<div className="mx-5 mt-8 bg-blue-50 rounded-3xl p-6">
+  <div className="flex justify-between items-start">
+    <div>
+      <p className="font-semibold text-lg">Continue setup</p>
+      <p className="text-sm text-zinc-600 mt-1">Use this guide to finish setting up your account</p>
+    </div>
+    <div className="relative w-16 h-16">
+      <svg className="w-16 h-16 -rotate-90" viewBox="0 0 36 36">
+        <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#e6e6e6" strokeWidth="3" />
+        <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#3b82f6" strokeWidth="3" strokeDasharray="80, 100" />
+      </svg>
+      <div className="absolute inset-0 flex items-center justify-center text-blue-600 font-semibold">4/5</div>
+    </div>
+  </div>
+  <button className="mt-6 w-full bg-blue-600 text-white py-4 rounded-2xl font-semibold text-lg">
+    Complete setup
+  </button>
+</div>
 }
