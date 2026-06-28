@@ -1,5 +1,4 @@
 import { createFileRoute, Navigate, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
 import { Plus, ArrowUpRight, Repeat } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { useAppState, formatMoney } from "@/lib/store";
@@ -68,7 +67,7 @@ function Home() {
             <div 
               key={w.currency} 
               className="snap-start w-72 bg-white rounded-3xl p-5 shadow border border-zinc-100 shrink-0 cursor-pointer"
-              onClick={() => navigate({ to: '/wallets/USD' })}
+              onClick={() => navigate({ to: `/wallets/${w.currency}` })}
             >
               <div className="text-5xl mb-4">{w.flag}</div>
               <p className="font-semibold text-lg">{w.name}</p>
@@ -132,4 +131,4 @@ function Home() {
       </div>
     </AppShell>
   );
-          }
+}
