@@ -132,26 +132,30 @@ function Home() {
         </div>
       </div>
 
-      {/* Popup Detail US Dollar */}
+      {/* Popup Detail Bank */}
       {selectedWallet && (
-        <div className="fixed inset-0 bg-black/70 flex items-end z-50" onClick={() => setSelectedWallet(null)}>
+        <div className="fixed inset-0 bg-black/70 z-50 flex items-end" onClick={() => setSelectedWallet(null)}>
           <div className="bg-white w-full rounded-t-3xl max-h-[90vh] overflow-auto" onClick={e => e.stopPropagation()}>
             <div className="p-5">
-              <button onClick={() => setSelectedWallet(null)} className="text-3xl mb-4">←</button>
-              <div className="text-center">
-                <div className="text-7xl mx-auto">{selectedWallet.flag}</div>
-                <p className="text-5xl font-bold mt-4">$0</p>
-                <p className="text-sm text-zinc-500">USD Balance</p>
+              <button onClick={() => setSelectedWallet(null)} className="text-3xl">←</button>
+
+              <div className="text-center mt-8">
+                <div className="text-8xl mx-auto">{selectedWallet.flag}</div>
+                <p className="text-6xl font-bold mt-6">$0</p>
+                <p className="text-lg text-zinc-500">USD Balance</p>
               </div>
-              <div className="flex gap-4 mt-8">
-                <button className="flex-1 border py-4 rounded-full">Send</button>
-                <button className="flex-1 border py-4 rounded-full">Convert</button>
+
+              <div className="flex gap-4 mt-12">
+                <button className="flex-1 border py-4 rounded-full font-medium">Send</button>
+                <button className="flex-1 border py-4 rounded-full font-medium">Convert</button>
               </div>
-              <div className="mt-10">
+
+              <div className="mt-12">
                 <p className="font-semibold">Receive USD</p>
                 <button className="mt-4 bg-blue-100 text-blue-600 px-6 py-3 rounded-2xl w-full">🏦 Bank Transfer</button>
               </div>
-              <div className="mt-8 space-y-6">
+
+              <div className="mt-12 space-y-6">
                 <div>
                   <p className="text-sm text-zinc-500">Account holder</p>
                   <p className="font-medium">MUHAMMAD RUDI SIAGIAN</p>
@@ -161,12 +165,24 @@ function Home() {
                   <p className="font-mono text-lg">216774698486</p>
                 </div>
                 <div>
-                  <p className="text-sm text-zinc-500">Wire routing</p>
-                  <p className="font-mono">101019644</p>
+                  <p className="text-sm text-zinc-500">Bank name</p>
+                  <p className="font-medium">Lead</p>
                 </div>
                 <div>
                   <p className="text-sm text-zinc-500">ACH Routing</p>
                   <p className="font-mono">101019644</p>
+                </div>
+                <div>
+                  <p className="text-sm text-zinc-500">Wire Routing</p>
+                  <p className="font-mono">101019644</p>
+                </div>
+                <div>
+                  <p className="text-sm text-zinc-500">Account type</p>
+                  <p className="font-medium">Checking</p>
+                </div>
+                <div>
+                  <p className="text-sm text-zinc-500">Bank address</p>
+                  <p className="font-medium">1801 Main St., Kansas City, MO 64108</p>
                 </div>
               </div>
             </div>
