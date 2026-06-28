@@ -1,34 +1,18 @@
-import { createFileRoute, Link, Navigate, notFound, useNavigate } from "@tanstack/react-router";
-import { ArrowUpRight, ArrowDownLeft, Plus, Copy, Check } from "lucide-react";
+import { createFileRoute, Navigate, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { AppShell } from "@/components/AppShell";
-import { useAppState, formatMoney, actions, type CurrencyCode } from "@/lib/store";
+import { useAppState } from "@/lib/store";
 
 export const Route = createFileRoute("/wallets/$currency")({
-  head: ({ params }) => ({ meta: [{ title: `${params.currency} wallet — Grey` }] }),
   component: WalletDetail,
-  ssr: false,
 });
 
 function WalletDetail() {
   const { currency } = Route.useParams();
   const user = useAppState((s) => s.user);
-  const wallet = useAppState((s) =>
-    s.wallets.find((w) => w.currency === (currency as CurrencyCode)),
-  );
-  const [copied, setCopied] = useState(false);
   const navigate = useNavigate();
 
   if (!user) return <Navigate to="/auth" replace />;
-  if (!wallet) throw notFound();
-
-  const iban = `LUMEN ${currency} 0142 ${user.id.slice(0, 4).toUpperCase()} ${user.id.slice(-4).toUpperCase()}`;
-
-  const copy = () => {
-    navigator.clipboard?.writeText(iban);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
 
   return (
     <AppShell>
@@ -36,25 +20,17 @@ function WalletDetail() {
         {/* Header */}
         <div className="px-5 pt-12 flex items-center justify-between">
           <button onClick={() => window.history.back()} className="text-3xl">←</button>
-          <div className="text-xl font-semibold">USD Balance</div>
-          <div className="text-2xl">⋯</div>
-        </div>
-
-        {/* Flag & Balance */}
-        <div className="px-5 mt-8">
-          <div className="flex items-center gap-4">
-            <div className="text-7xl">🇺🇸</div>
-            <div>
-              <p className="text-sm text-zinc-500">YOUR USD BALANCE</p>
-              <p className="text-6xl font-bold">$0</p>
-            </div>
+          <div>
+            <p className="text-center text-2xl font-bold">$0</p>
+            <p className="text-center text-sm text-zinc-500">USD Balance</p>
           </div>
+          <div className="text-3xl">⋯</div>
         </div>
 
         {/* Send & Convert */}
         <div className="px-5 mt-8 flex gap-4">
-          <button onClick={() => navigate({ to: "/send" })} className="flex-1 border border-zinc-300 py-4 rounded-full text-sm font-medium">Send</button>
-          <button className="flex-1 border border-zinc-300 py-4 rounded-full text-sm font-medium">Convert</button>
+          <button className="flex-1 border border-zinc-300 py-4 rounded-full font-medium">Send</button>
+          <button className="flex-1 border border-zinc-300 py-4 rounded-full font-medium">Convert</button>
         </div>
 
         {/* Receive USD */}
@@ -85,7 +61,18 @@ function WalletDetail() {
             <p className="font-mono">101019644</p>
           </div>
         </div>
+
+        {/* About this account */}
+        <div className="mx-5 mt-8">
+          <p className="font-semibold mb-4">About this account</p>
+          <div className="text-sm text-zinc-600 space-y-4">
+            <p>• You can receive payments instantly via FedNow...</p>
+            <p>• Receiving payments via ACH has a 0.8% fee...</p>
+            <p>• Receiving payments via WIRE has a flat fee of $20...</p>
+            <p>• Receiving payments via SWIFT is currently not supported.</p>
+          </div>
+        </div>
       </div>
     </AppShell>
   );
-      }
+}
