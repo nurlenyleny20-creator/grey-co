@@ -17,7 +17,7 @@ function Home() {
 
   return (
     <AppShell>
-      <div className="min-h-screen bg-zinc-50">
+      <div className="min-h-screen bg-zinc-50 pb-20">
         {/* Header */}
         <div className="px-5 pt-12 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -66,10 +66,10 @@ function Home() {
         <div className="mt-10 px-5 overflow-x-auto flex gap-4 pb-6 snap-x snap-mandatory">
           {wallets.map((w: any) => (
             <div 
-  key={w.currency} 
-  className="snap-start w-72 bg-white rounded-3xl p-5 shadow border border-zinc-100 shrink-0 cursor-pointer"
-  onClick={() => navigate({ to: '/wallets/USD' })}
->
+              key={w.currency} 
+              className="snap-start w-72 bg-white rounded-3xl p-5 shadow border border-zinc-100 shrink-0 cursor-pointer"
+              onClick={() => navigate({ to: `/wallets/${w.currency}` })}
+            >
               <div className="text-5xl mb-4">{w.flag}</div>
               <p className="font-semibold text-lg">{w.name}</p>
               <p className="text-sm text-zinc-500">{w.currency}</p>
@@ -79,31 +79,12 @@ function Home() {
           ))}
         </div>
 
-        {/* Continue Setup */}
-        <div className="mx-5 mt-8 bg-blue-50 rounded-3xl p-6">
-          <div className="flex justify-between items-start">
-            <div>
-              <p className="font-semibold text-lg">Continue setup</p>
-              <p className="text-sm text-zinc-600 mt-1">Use this guide to finish setting up your account</p>
-            </div>
-            <div className="relative w-16 h-16 flex items-center justify-center">
-              <svg className="w-16 h-16 -rotate-90" viewBox="0 0 36 36">
-                <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#e5e7eb" strokeWidth="3.5" />
-                <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#3b82f6" strokeWidth="3.5" strokeDasharray="80, 100" />
-              </svg>
-              <div className="absolute text-blue-600 font-semibold text-xl">4/5</div>
-            </div>
-          </div>
-          <button className="mt-6 w-full bg-blue-600 text-white py-4 rounded-2xl font-semibold text-lg">
-            Complete setup
-          </button>
-        </div>
+        {/* Continue Setup, Recent Transactions, Other Products */}
+        {/* (kode yang sudah ada di file kamu) */}
       </div>
-      {/* Recent Transactions */}
-        <div className="mx-5 mt-8">
-          <div className="flex justify-between items-center mb-4 px-1">
-            <p className="font-semibold text-zinc-500">RECENT TRANSACTIONS</p>
-            <p className="text-blue-600 text-sm">See all</p>
+    </AppShell>
+  );
+}            <p className="text-blue-600 text-sm">See all</p>
           </div>
           <div className="bg-white rounded-3xl p-5 flex items-center gap-4">
             <div className="w-10 h-10 bg-zinc-100 rounded-full flex items-center justify-center text-lg font-medium">CC</div>
