@@ -1,21 +1,4 @@
-import { createFileRoute, Navigate, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
-import { Plus, ArrowUpRight, Repeat } from "lucide-react";
-import { AppShell } from "@/components/AppShell";
-import { useAppState, formatMoney } from "@/lib/store";
-
-export const Route = createFileRoute("/home")({
-  component: Home,
-});
-
-function Home() {
-  const user = useAppState((s) => s.user);
-  const wallets = useAppState((s) => s.wallets);
-  const navigate = useNavigate();
-
-  if (!user) return <Navigate to="/auth" replace />;
-
-  return (
+return (
     <AppShell>
       <div className="min-h-screen bg-zinc-50 pb-20">
         {/* Header */}
@@ -79,12 +62,31 @@ function Home() {
           ))}
         </div>
 
-        {/* Continue Setup, Recent Transactions, Other Products */}
-        {/* (kode yang sudah ada di file kamu) */}
-      </div>
-    </AppShell>
-  );
-}            <p className="text-blue-600 text-sm">See all</p>
+        {/* Continue Setup */}
+        <div className="mx-5 mt-8 bg-blue-50 rounded-3xl p-6">
+          <div className="flex justify-between items-start">
+            <div>
+              <p className="font-semibold text-lg">Continue setup</p>
+              <p className="text-sm text-zinc-600 mt-1">Use this guide to finish setting up your account</p>
+            </div>
+            <div className="relative w-16 h-16 flex items-center justify-center">
+              <svg className="w-16 h-16 -rotate-90" viewBox="0 0 36 36">
+                <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#e5e7eb" strokeWidth="3.5" />
+                <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#3b82f6" strokeWidth="3.5" strokeDasharray="80, 100" />
+              </svg>
+              <div className="absolute text-blue-600 font-semibold text-xl">4/5</div>
+            </div>
+          </div>
+          <button className="mt-6 w-full bg-blue-600 text-white py-4 rounded-2xl font-semibold text-lg">
+            Complete setup
+          </button>
+        </div>
+
+        {/* Recent Transactions */}
+        <div className="mx-5 mt-8">
+          <div className="flex justify-between items-center mb-4 px-1">
+            <p className="font-semibold text-zinc-500">RECENT TRANSACTIONS</p>
+            <p className="text-blue-600 text-sm">See all</p>
           </div>
           <div className="bg-white rounded-3xl p-5 flex items-center gap-4">
             <div className="w-10 h-10 bg-zinc-100 rounded-full flex items-center justify-center text-lg font-medium">CC</div>
@@ -110,6 +112,7 @@ function Home() {
             </div>
           </div>
         </div>
+      </div>
     </AppShell>
   );
 }
