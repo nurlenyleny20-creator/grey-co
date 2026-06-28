@@ -41,20 +41,26 @@ function Home() {
           <p className="text-7xl font-bold mt-3">$0</p>
         </div>
 
-        {/* Quick Actions */}
+        {/* Quick Actions - SUDAH DIUBAH */}
         <div className="flex justify-center gap-10 mt-10">
-          <button onClick={() => navigate({ to: '/wallets' })} className="flex flex-col items-center gap-1">
+          {/* Add Money - Sekarang ke halaman QR TRC20 */}
+          <button 
+            onClick={() => navigate({ to: '/add-money' })} 
+            className="flex flex-col items-center gap-1"
+          >
             <div className="w-14 h-14 rounded-full border border-zinc-300 flex items-center justify-center">
               <Plus className="w-6 h-6" />
             </div>
             <p className="text-xs font-medium">Add money</p>
           </button>
+
           <button onClick={() => navigate({ to: '/send' })} className="flex flex-col items-center gap-1">
             <div className="w-14 h-14 rounded-full border border-zinc-300 flex items-center justify-center">
               <ArrowUpRight className="w-6 h-6" />
             </div>
             <p className="text-xs font-medium">Send</p>
           </button>
+
           <button onClick={() => navigate({ to: '/wallets' })} className="flex flex-col items-center gap-1">
             <div className="w-14 h-14 rounded-full border border-zinc-300 flex items-center justify-center">
               <Repeat className="w-6 h-6" />
@@ -132,7 +138,7 @@ function Home() {
         </div>
       </div>
 
-      {/* Popup Detail Bank (berbeda per currency) */}
+      {/* Popup Detail Bank */}
       {selectedWallet && (
         <div className="fixed inset-0 bg-black/70 z-50 flex items-end" onClick={() => setSelectedWallet(null)}>
           <div className="bg-white w-full rounded-t-3xl max-h-[90vh] overflow-auto" onClick={e => e.stopPropagation()}>
@@ -203,4 +209,4 @@ function Home() {
       )}
     </AppShell>
   );
-      }
+}
