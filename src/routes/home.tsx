@@ -95,6 +95,36 @@ function Home() {
           </button>
         </div>
       </div>
+      {/* Recent Transactions */}
+        <div className="mx-5 mt-8">
+          <div className="flex justify-between items-center mb-4 px-1">
+            <p className="font-semibold text-zinc-500">RECENT TRANSACTIONS</p>
+            <p className="text-blue-600 text-sm">See all</p>
+          </div>
+          <div className="bg-white rounded-3xl p-5 flex items-center gap-4">
+            <div className="w-10 h-10 bg-zinc-100 rounded-full flex items-center justify-center text-lg font-medium">CC</div>
+            <div className="flex-1">
+              <p className="font-medium">Card creation</p>
+              <p className="text-sm text-zinc-500">26 Juni, 2026</p>
+            </div>
+            <p className="font-semibold text-red-500">- $0</p>
+          </div>
+        </div>
+
+        {/* Other Products */}
+        <div className="mx-5 mt-6">
+          <p className="font-semibold text-zinc-500 px-1 mb-4">OTHER PRODUCTS</p>
+          <div className="flex gap-4">
+            <div className="flex-1 bg-white rounded-3xl p-5 flex items-center gap-3">
+              <div className="w-10 h-10 bg-blue-100 rounded-2xl flex items-center justify-center">💳</div>
+              <p className="font-medium">Gift Cards</p>
+            </div>
+            <div className="flex-1 bg-white rounded-3xl p-5 flex items-center gap-3">
+              <div className="w-10 h-10 bg-blue-100 rounded-2xl flex items-center justify-center">📄</div>
+              <p className="font-medium">Invoices</p>
+            </div>
+          </div>
+        </div>
     </AppShell>
   );
 }
