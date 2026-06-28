@@ -1,60 +1,91 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Navigate, useNavigate } from "@tanstack/react-router";
+import { useState } from "react";
 import { AppShell } from "@/components/AppShell";
 
-export const Route = createFileRoute("/cards")({
-  component: Cards,
+export const Route = createFileRoute("/wallets/$currency")({
+  component: WalletDetail,
 });
 
-function Cards() {
+function WalletDetail() {
+  const navigate = useNavigate();
+
   return (
     <AppShell>
       <div className="min-h-screen bg-zinc-50 pb-20">
-        <div className="px-5 pt-12 flex justify-between items-center">
-          <h1 className="text-3xl font-semibold">Cards</h1>
-          <p className="text-blue-600 font-medium">+ Add new card</p>
-        </div>
-
-        {/* Grey Visa Card */}
-        <div className="mx-5 mt-8 bg-gradient-to-br from-black via-purple-900 to-black rounded-3xl p-6 text-white shadow-2xl relative overflow-hidden h-56">
-          <div className="flex justify-between">
-            <div className="text-2xl font-bold">Grey</div>
-            <div className="text-right">
-              <div className="text-3xl font-bold">VISA</div>
-              <p className="text-xs">Platinum</p>
-            </div>
+        {/* Header */}
+        <div className="px-5 pt-12 flex items-center justify-between">
+          <button onClick={() => window.history.back()} className="text-3xl">←</button>
+          <div className="text-center">
+            <p className="text-5xl font-bold">$0</p>
+            <p className="text-sm text-zinc-500">USD Balance</p>
           </div>
-          <div className="mt-12 text-2xl tracking-widest">•••• 1581</div>
-          <div className="absolute bottom-6 left-6 text-sm">MUHAMMAD</div>
+          <div className="text-3xl">⋯</div>
         </div>
 
-        {/* Action Buttons */}
-        <div className="flex justify-center gap-8 mt-8">
-          <button className="flex flex-col items-center">
-            <div className="w-14 h-14 bg-zinc-800 rounded-full flex items-center justify-center text-white">ℹ️</div>
-            <p className="text-xs mt-2">Details</p>
-          </button>
-          <button className="flex flex-col items-center">
-            <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center">❄️</div>
-            <p className="text-xs mt-2">Freeze</p>
-          </button>
-          <button className="flex flex-col items-center">
-            <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center">🔒</div>
-            <p className="text-xs mt-2">Show PIN</p>
+        {/* Send & Convert */}
+        <div className="px-5 mt-8 flex gap-4">
+          <button className="flex-1 border border-zinc-300 py-4 rounded-full font-medium">Send</button>
+          <button className="flex-1 border border-zinc-300 py-4 rounded-full font-medium">Convert</button>
+        </div>
+
+        {/* Receive USD */}
+        <div className="mx-5 mt-10">
+          <p className="font-semibold">Receive USD</p>
+          <p className="text-sm text-zinc-500">Easily accept payments via bank transfer</p>
+          <button className="mt-4 bg-blue-100 text-blue-600 px-6 py-3 rounded-2xl flex items-center gap-2 w-full justify-center">
+            🏦 Bank Transfer
           </button>
         </div>
 
-        {/* Fund Account */}
-        <div className="mx-5 mt-8 bg-gradient-to-r from-purple-700 to-pink-600 rounded-3xl p-6 text-white">
-          <p className="font-medium">Fund your account and spend globally with your card.</p>
-          <button className="mt-4 bg-black text-white px-6 py-3 rounded-full">Add money</button>
-        </div>
-
-        {/* Google Wallet */}
-        <div className="mx-5 mt-6 bg-white rounded-3xl p-6 flex items-center gap-4">
-          <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-green-500 rounded-xl flex items-center justify-center text-white text-2xl">G</div>
+        {/* Account Details */}
+        <div className="mx-5 mt-8 bg-white rounded-3xl p-6 space-y-6">
           <div>
-            <p className="font-medium">Add to Google Wallet</p>
-            <p className="text-sm text-zinc-500">Start spending using Google Pay</p>
+            <p className="text-sm text-zinc-500">Account holder</p>
+            <p className="font-medium">MUHAMMAD RUDI SIAGIAN</p>
+          </div>
+          <div>
+            <p className="text-sm text-zinc-500">Account number</p>
+            <p className="font-mono text-lg">216774698486</p>
+          </div>
+          <div>
+            <p className="text-sm text-zinc-500">Wire routing</p>
+            <p className="font-mono">101019644</p>
+          </div>
+          <div>
+            <p className="text-sm text-zinc-500">ACH Routing</p>
+            <p className="font-mono">101019644</p>
+          </div>
+          <div>
+            <p className="text-sm text-zinc-500">Account type</p>
+            <p className="font-medium">Checking</p>
+          </div>
+          <div>
+            <p className="text-sm text-zinc-500">Bank name</p>
+            <p className="font-medium">Lead</p>
+          </div>
+          <div>
+            <p className="text-sm text-zinc-500">Bank address</p>
+            <p className="font-medium">1801 Main St., Kansas City, MO 64108</p>
+          </div>
+        </div>
+
+        {/* Share Button */}
+        <div className="mx-5 mt-6">
+          <button className="w-full bg-zinc-100 text-blue-600 py-4 rounded-2xl font-medium flex items-center justify-center gap-2">
+            Share <span>↑</span>
+          </button>
+        </div>
+
+        {/* About this account */}
+        <div className="mx-5 mt-8">
+          <p className="font-semibold mb-4">About this account</p>
+          <div className="text-sm text-zinc-600 space-y-4">
+            <p>• You can receive payments instantly via FedNow (available 24/7/365) if the sending bank supports it. Fees: 0.8% (minimum $2, maximum $10).</p>
+            <p>• Receiving payments via ACH has a 0.8% fee (minimum $2, maximum $10). You'll need the ACH routing number for these payments.</p>
+            <p>• Receiving payments via WIRE has a flat fee of $20. You'll need the WIRE routing number for these payments.</p>
+            <p>• Receiving payments via SWIFT is currently not supported.</p>
+            <p>• USD payments can only be received from banks within the United States.</p>
+            <p>• Processing time for incoming payments via ACH or Wire can take between 1-3 days, depending on the payment scheme used by the sending bank.</p>
           </div>
         </div>
       </div>
