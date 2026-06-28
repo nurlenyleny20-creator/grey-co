@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, Alert, ScrollView, SafeAreaView, StatusBar } from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
 import * as Clipboard from '@react-native-clipboard/clipboard';
-import { Ionicons } from '@expo/vector-icons';
+import { Copy } from 'lucide-react';   // ← Diganti
 
 const TRC20_ADDRESS = "TEJMgm44ANpkq2LZqPBXmg2an1Esk4eBWf";
 
@@ -18,7 +18,7 @@ const AddMoneyScreen = () => {
       
       <ScrollView className="flex-1 px-5 pt-6">
         <View className="flex-row items-center mb-8">
-          <Ionicons name="arrow-back" size={28} color="#fff" />
+          <button className="text-3xl text-white">←</button>
           <Text className="text-white text-2xl font-bold ml-4">Add Money</Text>
         </View>
 
@@ -45,7 +45,7 @@ const AddMoneyScreen = () => {
             onPress={copyAddress}
             className="w-full bg-[#00D4FF] py-4 rounded-2xl flex-row items-center justify-center active:bg-[#00B8E0]"
           >
-            <Ionicons name="copy-outline" size={22} color="#000" />
+            <Copy className="w-5 h-5 text-black" />
             <Text className="text-black font-semibold text-lg ml-3">Copy Address</Text>
           </TouchableOpacity>
         </View>
