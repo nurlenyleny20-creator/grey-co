@@ -41,9 +41,9 @@ function Home() {
           <p className="text-7xl font-bold mt-3">$0</p>
         </div>
 
-        {/* Quick Actions - SUDAH DIUBAH */}
+        {/* Quick Actions */}
         <div className="flex justify-center gap-10 mt-10">
-          {/* Add Money - Sekarang ke halaman QR TRC20 */}
+          {/* Add Money - Sekarang ke QR TRC20 */}
           <button 
             onClick={() => navigate({ to: '/add-money' })} 
             className="flex flex-col items-center gap-1"
