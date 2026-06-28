@@ -68,7 +68,7 @@ function Home() {
             <div 
   key={w.currency} 
   className="snap-start w-72 bg-white rounded-3xl p-5 shadow border border-zinc-100 shrink-0 cursor-pointer"
-  onClick={() => navigate({ to: `/wallets/${w.currency}` })}
+  onClick={() => navigate({ to: '/wallets/USD' })}
 >
               <div className="text-5xl mb-4">{w.flag}</div>
               <p className="font-semibold text-lg">{w.name}</p>
