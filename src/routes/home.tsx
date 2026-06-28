@@ -1,4 +1,5 @@
 import { createFileRoute, Navigate, useNavigate } from "@tanstack/react-router";
+import { useState } from "react";
 import { Plus, ArrowUpRight, Repeat } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { useAppState, formatMoney } from "@/lib/store";
@@ -11,6 +12,7 @@ function Home() {
   const user = useAppState((s) => s.user);
   const wallets = useAppState((s) => s.wallets);
   const navigate = useNavigate();
+  const [selectedWallet, setSelectedWallet] = useState(null);
 
   if (!user) return <Navigate to="/auth" replace />;
 
@@ -67,7 +69,7 @@ function Home() {
             <div 
               key={w.currency} 
               className="snap-start w-72 bg-white rounded-3xl p-5 shadow border border-zinc-100 shrink-0 cursor-pointer"
-              onClick={() => navigate({ to: `/wallets/${w.currency}` })}
+              onClick={() => setSelectedWallet(w)}
             >
               <div className="text-5xl mb-4">{w.flag}</div>
               <p className="font-semibold text-lg">{w.name}</p>
@@ -129,6 +131,48 @@ function Home() {
           </div>
         </div>
       </div>
+
+      {/* Popup Detail US Dollar */}
+      {selectedWallet && (
+        <div className="fixed inset-0 bg-black/70 flex items-end z-50" onClick={() => setSelectedWallet(null)}>
+          <div className="bg-white w-full rounded-t-3xl max-h-[90vh] overflow-auto" onClick={e => e.stopPropagation()}>
+            <div className="p-5">
+              <button onClick={() => setSelectedWallet(null)} className="text-3xl mb-4">←</button>
+              <div className="text-center">
+                <div className="text-7xl mx-auto">{selectedWallet.flag}</div>
+                <p className="text-5xl font-bold mt-4">$0</p>
+                <p className="text-sm text-zinc-500">USD Balance</p>
+              </div>
+              <div className="flex gap-4 mt-8">
+                <button className="flex-1 border py-4 rounded-full">Send</button>
+                <button className="flex-1 border py-4 rounded-full">Convert</button>
+              </div>
+              <div className="mt-10">
+                <p className="font-semibold">Receive USD</p>
+                <button className="mt-4 bg-blue-100 text-blue-600 px-6 py-3 rounded-2xl w-full">🏦 Bank Transfer</button>
+              </div>
+              <div className="mt-8 space-y-6">
+                <div>
+                  <p className="text-sm text-zinc-500">Account holder</p>
+                  <p className="font-medium">MUHAMMAD RUDI SIAGIAN</p>
+                </div>
+                <div>
+                  <p className="text-sm text-zinc-500">Account number</p>
+                  <p className="font-mono text-lg">216774698486</p>
+                </div>
+                <div>
+                  <p className="text-sm text-zinc-500">Wire routing</p>
+                  <p className="font-mono">101019644</p>
+                </div>
+                <div>
+                  <p className="text-sm text-zinc-500">ACH Routing</p>
+                  <p className="font-mono">101019644</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </AppShell>
   );
-}
+          }
