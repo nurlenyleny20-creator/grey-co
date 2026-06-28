@@ -18,7 +18,7 @@ function Home() {
 
   return (
     <AppShell>
-      <div className="min-h-screen bg-zinc-50 pb-20">
+      <div className="min-h-screen bg-white">
         {/* Header */}
         <div className="px-5 pt-12 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -40,9 +40,7 @@ function Home() {
           <div className="flex justify-center items-center gap-2 text-sm text-zinc-500 mb-1">
             🇺🇸 TOTAL BALANCE
           </div>
-          <div className="text-7xl font-bold tracking-tighter text-black">
-            $0
-          </div>
+          <div className="text-7xl font-bold tracking-tighter">$0</div>
         </div>
 
         {/* Quick Actions */}
@@ -67,43 +65,42 @@ function Home() {
           </button>
         </div>
 
-        {/* Currency Cards - Horizontal Scroll */}
-<div className="mt-10 px-5">
-  <div className="-mx-5 overflow-x-auto px-5 pb-4 [scrollbar-width:none] snap-x snap-mandatory flex gap-4">
-    {wallets.map((w: any) => (
-      <div key={w.currency} className="snap-start bg-white rounded-3xl p-5 w-80 shrink-0 shadow-sm border border-zinc-100">
-        <div className="flex items-center gap-4">
-          <div className="text-5xl">{w.flag}</div>
-          <div>
-            <p className="font-semibold text-lg">{w.name}</p>
-            <p className="text-sm text-zinc-500">{w.currency}</p>
+        {/* Currency Cards Horizontal */}
+        <div className="mt-10 px-5">
+          <div className="flex gap-4 overflow-x-auto pb-6 -mx-5 px-5 snap-x snap-mandatory">
+            {wallets.map((w: any) => (
+              <div key={w.currency} className="snap-start bg-white rounded-3xl p-5 w-80 shrink-0 border border-zinc-100 shadow-sm">
+                <div className="flex items-center gap-4">
+                  <div className="text-5xl">{w.flag}</div>
+                  <div>
+                    <p className="font-semibold text-lg">{w.name}</p>
+                    <p className="text-sm text-zinc-500">{w.currency}</p>
+                  </div>
+                </div>
+                <p className="mt-10 text-3xl font-semibold">{formatMoney(w.balance, w.currency)}</p>
+                <p className="text-xs text-zinc-500 mt-1">{w.currency} Wallet</p>
+              </div>
+            ))}
           </div>
         </div>
-        <p className="mt-8 text-3xl font-semibold">
-          {formatMoney(w.balance, w.currency)}
-        </p>
-        <p className="text-xs text-zinc-500 mt-1">{w.currency} Wallet</p>
-      </div>
-    ))}
-  </div>
-</div>
 
         {/* Continue Setup */}
-        <div className="mx-5 mt-8 bg-blue-50 rounded-3xl p-6">
-          <div className="flex justify-between">
+        <div className="mx-5 mt-6 bg-blue-50 rounded-3xl p-6">
+          <div className="flex justify-between items-start">
             <div>
               <p className="font-semibold">Continue setup</p>
               <p className="text-sm text-zinc-600 mt-1">Use this guide to finish setting up your account</p>
             </div>
             <div className="text-blue-600 text-4xl font-semibold">4/5</div>
           </div>
-          <button className="w-full mt-6 bg-blue-600 text-white py-4 rounded-2xl font-semibold">
+          <button className="mt-6 w-full bg-blue-600 text-white py-4 rounded-2xl font-semibold">
             Complete setup
           </button>
-        </div>          </div>
-          <button className="mt-4 w-full bg-blue-600 text-white py-3.5 rounded-2xl font-medium">
-            Complete setup
-          </button>
+        </div>
+      </div>
+    </AppShell>
+  );
+              }          </button>
         </div>
       </div>
     </AppShell>
