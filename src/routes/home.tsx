@@ -14,7 +14,7 @@ function Home() {
   const navigate = useNavigate();
   const [selectedWallet, setSelectedWallet] = useState(null);
 
-  if (!user) return <Navigate to="/auth" replace />;
+  // if (!user) return <Navigate to="/auth" replace />; // Login dihilangkan
 
   return (
     <AppShell>
