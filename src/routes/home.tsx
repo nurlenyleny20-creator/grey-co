@@ -67,24 +67,26 @@ function Home() {
           </button>
         </div>
 
-        {/* Currency Cards */}
-        <div className="px-5 mt-10 space-y-3">
-          {wallets.map((w: any) => (
-            <div key={w.currency} className="bg-white rounded-3xl p-5 flex items-center justify-between shadow-sm border border-zinc-100">
-              <div className="flex items-center gap-4">
-                <div className="text-4xl">{w.flag}</div>
-                <div>
-                  <p className="font-semibold">{w.name}</p>
-                  <p className="text-xs text-zinc-500">{w.currency}</p>
-                </div>
-              </div>
-              <div className="text-right">
-                <p className="font-semibold text-xl">{formatMoney(w.balance, w.currency)}</p>
-                <p className="text-xs text-zinc-500">{w.currency} Wallet</p>
-              </div>
-            </div>
-          ))}
+        {/* Currency Cards - Horizontal Scroll */}
+<div className="mt-10 px-5">
+  <div className="-mx-5 overflow-x-auto px-5 pb-4 [scrollbar-width:none] snap-x snap-mandatory flex gap-4">
+    {wallets.map((w: any) => (
+      <div key={w.currency} className="snap-start bg-white rounded-3xl p-5 w-80 shrink-0 shadow-sm border border-zinc-100">
+        <div className="flex items-center gap-4">
+          <div className="text-5xl">{w.flag}</div>
+          <div>
+            <p className="font-semibold text-lg">{w.name}</p>
+            <p className="text-sm text-zinc-500">{w.currency}</p>
+          </div>
         </div>
+        <p className="mt-8 text-3xl font-semibold">
+          {formatMoney(w.balance, w.currency)}
+        </p>
+        <p className="text-xs text-zinc-500 mt-1">{w.currency} Wallet</p>
+      </div>
+    ))}
+  </div>
+</div>
 
         {/* Continue Setup */}
         <div className="mx-5 mt-8 bg-blue-50 rounded-3xl p-6">
