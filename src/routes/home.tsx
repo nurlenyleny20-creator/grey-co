@@ -34,31 +34,31 @@ function Home() {
 
         {/* Total Balance */}
         <div className="px-5 mt-8 text-center">
-          <div className="flex items-center justify-center gap-2 text-sm text-zinc-500">
-            🇺🇸 TOTAL BALANCE
+          <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur rounded-full px-4 py-1 text-sm text-zinc-500">
+            🇺🇸 TOTAL BALANCE <span className="text-xs">▼</span>
           </div>
-          <p className="text-7xl font-bold mt-2">$0</p>
+          <p className="text-7xl font-bold mt-3">$0</p>
         </div>
 
         {/* Quick Actions */}
-        <div className="flex justify-center gap-10 mt-8">
+        <div className="flex justify-center gap-10 mt-10">
           <button onClick={() => navigate({ to: '/wallets' })} className="flex flex-col items-center gap-1">
-            <div className="w-14 h-14 rounded-full border-2 border-zinc-300 flex items-center justify-center">
+            <div className="w-14 h-14 rounded-full border border-zinc-300 flex items-center justify-center">
               <Plus className="w-6 h-6" />
             </div>
-            <p className="text-xs">Add money</p>
+            <p className="text-xs font-medium">Add money</p>
           </button>
           <button onClick={() => navigate({ to: '/send' })} className="flex flex-col items-center gap-1">
-            <div className="w-14 h-14 rounded-full border-2 border-zinc-300 flex items-center justify-center">
+            <div className="w-14 h-14 rounded-full border border-zinc-300 flex items-center justify-center">
               <ArrowUpRight className="w-6 h-6" />
             </div>
-            <p className="text-xs">Send</p>
+            <p className="text-xs font-medium">Send</p>
           </button>
           <button onClick={() => navigate({ to: '/wallets' })} className="flex flex-col items-center gap-1">
-            <div className="w-14 h-14 rounded-full border-2 border-zinc-300 flex items-center justify-center">
+            <div className="w-14 h-14 rounded-full border border-zinc-300 flex items-center justify-center">
               <Repeat className="w-6 h-6" />
             </div>
-            <p className="text-xs">Convert</p>
+            <p className="text-xs font-medium">Convert</p>
           </button>
         </div>
 
