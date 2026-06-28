@@ -5,18 +5,12 @@ import {
   ArrowDownLeft,
   Repeat,
   Plus,
-  Eye,
-  EyeOff,
-  ShieldAlert,
-  ChevronRight,
 } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { useAppState, formatMoney, totalInUsd, type CurrencyCode } from "@/lib/store";
 
 export const Route = createFileRoute("/home")({
-  head: () => ({
-    meta: [{ title: "Home — Lumen" }],
-  }),
+  head: () => ({ meta: [{ title: "Home — Grey" }] }),
   component: Home,
   ssr: false,
 });
@@ -24,195 +18,97 @@ export const Route = createFileRoute("/home")({
 function Home() {
   const user = useAppState((s) => s.user);
   const wallets = useAppState((s) => s.wallets);
-  const txs = useAppState((s) => s.transactions);
   const [hidden, setHidden] = useState(false);
   const navigate = useNavigate();
 
   if (!user) return <Navigate to="/auth" replace />;
 
   const total = totalInUsd(wallets);
-  const recent = txs.slice(0, 4);
 
   return (
     <AppShell>
       <div className="px-5 pt-[max(1.25rem,env(safe-area-inset-top))]">
-        {/* Greeting */}
+        {/* Header */}
         <div className="flex items-center justify-between">
-          <div>
-            <p className="text-sm text-muted-foreground">Welcome back</p>
-            <h1 className="font-display text-xl font-semibold tracking-tight">
-              {user.fullName.split(" ")[0]}
-            </h1>
+          <div className="flex items-center gap-3">
+            <div className="h-10 w-10 rounded-full bg-zinc-800 flex items-center justify-center text-white font-semibold">
+              MS
+            </div>
+            <div>
+              <p className="text-xs text-zinc-500">Welcome back</p>
+              <p className="font-semibold">Muhammad</p>
+            </div>
           </div>
-          <Link
-            to="/profile"
-            className="tap-scale grid h-11 w-11 place-items-center rounded-full bg-primary text-base font-semibold text-primary-foreground"
-          >
-            {user.fullName.charAt(0).toUpperCase()}
-          </Link>
+          <button className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-5 py-2 rounded-full text-sm font-medium flex items-center gap-1.5">
+            <span>⚡</span> Earn $5
+          </button>
         </div>
 
-        {/* Balance card */}
-        <div className="mt-5 overflow-hidden rounded-3xl bg-[var(--gradient-card-dark)] p-5 text-white shadow-[var(--shadow-float)]">
-          <div className="flex items-center justify-between">
-            <p className="text-sm text-white/60">Total balance · USD</p>
+        {/* Total Balance */}
+        <div className="mt-8 text-center">
+          <div className="flex items-center justify-center gap-2 text-sm text-zinc-500">
+            🇺🇸 TOTAL BALANCE
+          </div>
+          <p className="mt-2 text-6xl font-semibold tracking-tighter">
+            {hidden ? "••••" : "$0"}
+          </p>
+        </div>
+
+        {/* Quick Actions */}
+        <div className="mt-8 flex justify-center gap-8">
+          {[
+            { label: "Add money", icon: Plus },
+            { label: "Send", icon: ArrowUpRight },
+            { label: "Convert", icon: Repeat },
+          ].map(({ label, icon: Icon }) => (
             <button
-              onClick={() => setHidden((v) => !v)}
-              className="tap-scale grid h-8 w-8 place-items-center rounded-full bg-white/10"
-              aria-label={hidden ? "Show balance" : "Hide balance"}
+              key={label}
+              onClick={() => navigate({ to: label === "Send" ? "/send" : "/wallets" })}
+              className="flex flex-col items-center gap-2"
             >
-              {hidden ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+              <div className="h-14 w-14 rounded-full border-2 border-zinc-200 flex items-center justify-center">
+                <Icon className="h-6 w-6" />
+              </div>
+              <p className="text-xs font-medium">{label}</p>
             </button>
-          </div>
-          <p className="mt-2 font-display text-[34px] font-semibold tracking-tight tabular-nums">
-            {hidden ? "••••••" : formatMoney(total, "USD")}
-          </p>
-          <p className="mt-1 text-xs text-white/50">
-            Across {wallets.length} currencies · Rates updated just now
-          </p>
-
-          <div className="mt-5 grid grid-cols-4 gap-2">
-            {[
-              { label: "Send", icon: ArrowUpRight, to: "/send" as const },
-              { label: "Receive", icon: ArrowDownLeft, to: "/wallets" as const },
-              { label: "Convert", icon: Repeat, to: "/send" as const },
-              { label: "Top up", icon: Plus, to: "/wallets" as const },
-            ].map(({ label, icon: Icon, to }) => (
-              <button
-                key={label}
-                onClick={() => navigate({ to })}
-                className="tap-scale flex flex-col items-center gap-1.5 rounded-2xl bg-white/10 py-3 text-xs font-medium"
-              >
-                <Icon className="h-4 w-4" />
-                {label}
-              </button>
-            ))}
-          </div>
+          ))}
         </div>
 
-        {/* KYC banner */}
-        {!user.kycVerified && (
-          <Link
-            to="/settings"
-            className="tap-scale mt-4 flex items-center gap-3 rounded-2xl border border-warning/30 bg-warning/10 p-3.5"
-          >
-            <ShieldAlert className="h-5 w-5 text-warning-foreground" />
-            <div className="min-w-0 flex-1">
-              <p className="text-sm font-medium">Verify your identity</p>
-              <p className="truncate text-xs text-muted-foreground">
-                Unlock higher limits and international transfers.
-              </p>
+        {/* Currency Accounts */}
+        <div className="mt-10 space-y-3">
+          {wallets.slice(0, 4).map((w: any) => (
+            <div key={w.currency} className="bg-white rounded-3xl p-4 shadow flex items-center justify-between border">
+              <div className="flex items-center gap-4">
+                <span className="text-3xl">{w.flag}</span>
+                <div>
+                  <p className="font-medium">{w.name}</p>
+                  <p className="text-xs text-zinc-500">{w.currency}</p>
+                </div>
+              </div>
+              <div className="text-right">
+                <p className="font-semibold text-lg">
+                  {hidden ? "••••" : formatMoney(w.balance, w.currency as CurrencyCode)}
+                </p>
+                <p className="text-xs text-zinc-500">{w.currency} Wallet</p>
+              </div>
             </div>
-            <ChevronRight className="h-4 w-4 text-muted-foreground" />
-          </Link>
-        )}
+          ))}
+        </div>
 
-        {/* Wallets row */}
-        <section className="mt-6">
-          <header className="mb-3 flex items-center justify-between">
-            <h2 className="text-sm font-semibold tracking-tight">Your wallets</h2>
-            <Link to="/wallets" className="text-xs text-primary">
-              See all
-            </Link>
-          </header>
-          <div className="-mx-5 overflow-x-auto px-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <div className="flex gap-3">
-              {wallets.map((w) => (
-                <Link
-                  key={w.currency}
-                  to="/wallets/$currency"
-                  params={{ currency: w.currency }}
-                  className="tap-scale flex w-40 shrink-0 flex-col rounded-2xl border border-border bg-surface p-4"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="text-xl">{w.flag}</span>
-                    <span className="text-[10px] font-semibold tracking-wider text-muted-foreground">
-                      {w.currency}
-                    </span>
-                  </div>
-                  <p className="mt-4 text-xs text-muted-foreground">{w.name}</p>
-                  <p className="mt-0.5 font-display text-base font-semibold tabular-nums">
-                    {hidden ? "••••" : formatMoney(w.balance, w.currency as CurrencyCode)}
-                  </p>
-                </Link>
-              ))}
+        {/* Continue Setup */}
+        <div className="mt-6 bg-blue-50 rounded-3xl p-5">
+          <div className="flex justify-between items-start">
+            <div>
+              <p className="font-semibold">Continue setup</p>
+              <p className="text-sm text-zinc-600 mt-1">Use this guide to finish setting up your account</p>
             </div>
+            <div className="text-3xl font-semibold text-blue-600">4/5</div>
           </div>
-        </section>
-
-        {/* Recent activity */}
-        <section className="mt-6">
-          <header className="mb-3 flex items-center justify-between">
-            <h2 className="text-sm font-semibold tracking-tight">Recent activity</h2>
-            <Link to="/transactions" className="text-xs text-primary">
-              See all
-            </Link>
-          </header>
-
-          {recent.length === 0 ? (
-            <div className="rounded-2xl border border-dashed border-border p-8 text-center">
-              <p className="text-sm font-medium">No activity yet</p>
-              <p className="mt-1 text-xs text-muted-foreground">
-                Your transfers and conversions will show up here.
-              </p>
-            </div>
-          ) : (
-            <ul className="divide-y divide-border rounded-2xl border border-border bg-surface">
-              {recent.map((tx) => (
-                <li key={tx.id}>
-                  <Link
-                    to="/transactions/$id"
-                    params={{ id: tx.id }}
-                    className="tap-scale flex items-center gap-3 px-4 py-3"
-                  >
-                    <TxIcon type={tx.type} />
-                    <div className="min-w-0 flex-1">
-                      <p className="truncate text-sm font-medium">{tx.counterparty}</p>
-                      <p className="text-xs text-muted-foreground">
-                        {new Date(tx.date).toLocaleDateString(undefined, {
-                          month: "short",
-                          day: "numeric",
-                        })}{" "}
-                        · {labelFor(tx.type)}
-                      </p>
-                    </div>
-                    <p
-                      className={
-                        "text-sm font-semibold tabular-nums " +
-                        (tx.type === "receive" || tx.type === "topup"
-                          ? "text-success"
-                          : "text-foreground")
-                      }
-                    >
-                      {tx.type === "receive" || tx.type === "topup" ? "+" : "−"}
-                      {formatMoney(tx.amount, tx.currency)}
-                    </p>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          )}
-        </section>
+          <button className="mt-4 w-full bg-blue-600 text-white py-3.5 rounded-2xl font-medium">
+            Complete setup
+          </button>
+        </div>
       </div>
     </AppShell>
-  );
-}
-
-function labelFor(t: string) {
-  return t === "send" ? "Sent" : t === "receive" ? "Received" : t === "topup" ? "Top up" : "Converted";
-}
-
-function TxIcon({ type }: { type: string }) {
-  const map: Record<string, { Icon: typeof ArrowUpRight; bg: string }> = {
-    send: { Icon: ArrowUpRight, bg: "bg-rose-500/10 text-rose-500" },
-    receive: { Icon: ArrowDownLeft, bg: "bg-emerald-500/10 text-emerald-500" },
-    convert: { Icon: Repeat, bg: "bg-sky-500/10 text-sky-500" },
-    topup: { Icon: Plus, bg: "bg-amber-500/10 text-amber-500" },
-  };
-  const { Icon, bg } = map[type] ?? map.send;
-  return (
-    <span className={"grid h-10 w-10 place-items-center rounded-full " + bg}>
-      <Icon className="h-4 w-4" />
-    </span>
   );
 }
